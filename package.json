@@ -1,0 +1,37 @@
+{
+  "name": "ng-hot-templates",
+  "version": "0.1.0",
+  "description": "Live reload for individual AngularJS directives when the template changes on the disk",
+  "main": "ng-hot-templates.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bahmutov/ng-hot-templates.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "ng",
+    "template",
+    "templates",
+    "hot",
+    "reload",
+    "live",
+    "reload",
+    "livereload",
+    "grunt",
+    "watch"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/ng-hot-templates/issues"
+  },
+  "homepage": "https://github.com/bahmutov/ng-hot-templates",
+  "devDependencies": {
+    "pre-git": "0.1.1"
+  },
+  "pre-commit": ["npm version"]
+}
