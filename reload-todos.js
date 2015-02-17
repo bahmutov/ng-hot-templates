@@ -12,11 +12,37 @@
     return JSON.parse(JSON.stringify(x));
   }
 
+  function getRootModule() {
+    return document.querySelector('[ng-app]').attributes['ng-app'];
+  }
+
+  // returns all element directive names found in page
+  function getAllDirectives() {
+
+  }
+
+  // returns true if reloads a directive from given path
   function reloadAngularDirectiveTemplate(path) {
 
     var injector = angular.element(document.body).injector();
     var $templateCache = injector.get('$templateCache');
-    $templateCache.removeAll();
+    if (!$templateCache.get(path)) {
+      return;
+    }
+    $templateCache.remove(path);
+
+
+    var appModule = getRootModule();
+    if (!appModule || !appModule.value) {
+      console.log('Could not find root module');
+      return;
+    }
+    appModule = String(appModule.value);
+    console.log('app module', appModule);
+    // TODO grab all directives provided by all modules
+    // see https://github.com/bahmutov/ng-ast
+    // look at each module's _invokeQueue to see if there is a directive
+    // keep walking down the dependent modules (requires)
 
     var $compile = injector.get('$compile');
     var $timeout = injector.get('$timeout');
@@ -44,19 +70,19 @@
         scope[key] = clonedOwnScope[k];
       });
     }, 100);
+
+    return true;
   }
 
-  function ngTemplateReloadPlugin(window, host) {
+  function ngTemplateReloadPlugin(window, options) {
     this.window = window;
-    this.host = host;
+    this.options = options;
   }
   ngTemplateReloadPlugin.identifier = 'ngTemplate';
   ngTemplateReloadPlugin.prototype.reload = function (path) {
-    if (/todos\.html$/.test(path)) {
-      console.log('need to reload ng template', path);
-      reloadAngularDirectiveTemplate(path);
-      return true;
-    }
+    var result = reloadAngularDirectiveTemplate(path);
+    console.log('need to reload ng template?', path, result);
+    return result;
   };
 
   setTimeout(function () {
