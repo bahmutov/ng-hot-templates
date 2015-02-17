@@ -13,8 +13,7 @@ scope data).
 ## How to run demo
 
 * Install dependencies `npm install`
-* Start `grunt watch`
-* Start local server, for example [http-server][http-server] `http-server -p 3003`
+* Start demo server using `grunt demo`
 * Open `localhost:3003` page
 * Try editing and saving `todos.html` - template for the `Todos` directive.
     - The directive should reload, but its data should stay.

@@ -13,6 +13,15 @@ module.exports = function(grunt) {
         files: ['*.html'],
         tasks: []
       }
+    },
+
+    connect: {
+      server: {
+        options: {
+          port: 3003,
+          livereload: true
+        }
+      }
     }
   });
 
@@ -24,4 +33,5 @@ module.exports = function(grunt) {
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('default', []);
+  grunt.registerTask('demo', ['connect', 'watch']);
 };
