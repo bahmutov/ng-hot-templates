@@ -10,6 +10,17 @@ scope data).
 
 ![screenshot](images/screenshot.png)
 
+## How to run demo
+
+* Install dependencies `npm install`
+* Start `grunt watch`
+* Start local server, for example [http-server][http-server] `http-server -p 3003`
+* Open `localhost:3003` page
+* Try editing and saving `todos.html` - template for the `Todos` directive.
+    - The directive should reload, but its data should stay.
+
+[http-server]: https://github.com/nodeapps/http-server
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
