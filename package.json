@@ -1,6 +1,6 @@
 {
   "name": "ng-hot-templates",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Live reload for individual AngularJS directives when the template changes on the disk",
   "main": "ng-hot-templates.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "grunt-contrib-connect": "0.9.0",
     "grunt-contrib-watch": "0.6.1",
     "matchdep": "0.3.0",
+    "open": "0.0.5",
     "pre-git": "0.1.1"
   },
   "pre-commit": [

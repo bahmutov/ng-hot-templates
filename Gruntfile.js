@@ -16,10 +16,11 @@ module.exports = function(grunt) {
     },
 
     connect: {
-      server: {
+      demo: {
         options: {
           port: 3003,
-          livereload: true
+          livereload: true,
+          maxAge: -1
         }
       }
     }
@@ -34,4 +35,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', []);
   grunt.registerTask('demo', ['connect', 'watch']);
+
+  grunt.event.once('connect.demo.listening', function(host, port) {
+    var url = 'http://' + host + ':' + port;
+    grunt.log.writeln('demo running at: ' + url);
+    require('open')(url);
+  });
 };

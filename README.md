@@ -14,15 +14,9 @@ scope data).
 
 * Install dependencies `npm install`
 * Start demo server using `grunt demo`
-* Open `localhost:3003` page
+    - the demo page will open in th default browser
 * Try editing and saving `todos.html` - template for the `Todos` directive.
     - The directive should reload, but its data should stay.
-
-Note: because there is no cache busting, in order to actually fetch new template source
-you need to disable cache in Chrome DevTools (DevTools -> Settings -> Disable cache)
-and have DevTools open during this demo.
-
-[http-server]: https://github.com/nodeapps/http-server
 
 ### Small print
 
