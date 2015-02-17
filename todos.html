@@ -1,0 +1,7 @@
+<form id="todo-form" ng-submit="addCurrentTodo()">
+  Enter new todo: <input ng-model="newTodo" placeholder="enter new todo">
+</form>
+
+<ul>
+  <li ng-repeat="todo in todos">{{ $index + 1}} - {{ todo }}</li>
+</ul>

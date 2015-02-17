@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>templates</title>
+  <script src="lib/angular.js"></script>
+  <style>
+  li {
+    list-style-type: none;
+  }
+  #todos {
+    margin: 10px 0px;
+    display: block;
+    white-space: pre;
+    font-family: monospace;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  #todos:before {
+    content: "todos app";
+    font-style: italic;
+    color: #555;
+  }
+  </style>
+</head>
+
+<body ng-app='TodosApp'>
+  <p>content before todos</p>
+
+  <todos></todos>
+
+  <p>content after todos</p>
+
+  <script id="todos">
+angular.module('Todos', [])
+  .directive('todos', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'todos.html',
+      controller: function ($scope) {
+        $scope.todos = ['item 1', 'item 2'];
+        $scope.addCurrentTodo = function () {
+          if ($scope.newTodo) {
+            $scope.todos.push($scope.newTodo);
+            $scope.newTodo = '';
+          }
+        };
+      }
+    }
+  });
+  </script>
+
+  <script>
+  angular.module('TodosApp', ['Todos']);
+  </script>
+  <script src="//localhost:35729/livereload.js"></script>
+  <script src="reload-todos.js"></script>
+</body>
+</html>

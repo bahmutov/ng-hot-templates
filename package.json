@@ -31,7 +31,11 @@
   },
   "homepage": "https://github.com/bahmutov/ng-hot-templates",
   "devDependencies": {
+    "es5-shim": "4.1.0",
+    "grunt": "0.4.5",
+    "grunt-contrib-watch": "0.6.1",
+    "matchdep": "0.3.0",
     "pre-git": "0.1.1"
   },
-  "pre-commit": ["npm version"]
+  "pre-commit": ["grunt", "npm version"]
 }
