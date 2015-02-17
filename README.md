@@ -5,7 +5,7 @@
 [Demo video](https://www.youtube.com/watch?v=N5deNI0_caA)
 
 You can edit individual directive's template files while running `grunt watch`,
-and the affectd directive will be automatically reloaded in place (preserving the
+and the affected directive will be automatically reloaded in place (preserving the
 scope data).
 
 ![screenshot](images/screenshot.png)

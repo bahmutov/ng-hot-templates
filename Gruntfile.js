@@ -7,21 +7,26 @@ module.exports = function(grunt) {
     watch: {
       options: {
         atBegin: true,
-        livereload: true
+        livereload: false,
+        reload: false,
+        spawn: false,
+        nospawn: true
       },
-      templates: {
-        files: ['*.html'],
+      ngTemplates: {
+        options: {
+          livereload: true
+        },
+        files: ['todos.html', 'demo.css'],
         tasks: []
       }
     },
 
-    connect: {
+    'http-server': {
       demo: {
-        options: {
-          port: 3003,
-          livereload: true,
-          maxAge: -1
-        }
+        root: '.',
+        port: 3003,
+        cache: -1,
+        runInBackground: true
       }
     }
   });
@@ -30,15 +35,20 @@ module.exports = function(grunt) {
     console.log(action + ' - ' + filepath);
   });
 
+  grunt.registerTask('open', function () {
+    var url = 'http://localhost:3003';
+    grunt.log.writeln('demo running at: ' + url);
+    require('open')(url);
+  });
+
+
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('default', []);
-  grunt.registerTask('demo', ['connect', 'watch']);
+  grunt.registerTask('demo', ['http-server:demo', 'open', 'watch:ngTemplates']);
 
-  grunt.event.once('connect.demo.listening', function(host, port) {
-    var url = 'http://' + host + ':' + port;
-    grunt.log.writeln('demo running at: ' + url);
-    require('open')(url);
+  grunt.event.once('http-server.demo.listening', function(host, port) {
+
   });
 };

@@ -46,21 +46,26 @@
     }, 100);
   }
 
-  var ngTemplateReloadPlugin = {
-    reload: function (path) {
-      if (/todos\.html$/.test(path)) {
-        console.log('need to reload ng template', path);
-        reloadAngularDirectiveTemplate(path);
-        return true;
-      }
+  function ngTemplateReloadPlugin(window, host) {
+    this.window = window;
+    this.host = host;
+  }
+  ngTemplateReloadPlugin.identifier = 'ngTemplate';
+  ngTemplateReloadPlugin.prototype.reload = function (path) {
+    if (/todos\.html$/.test(path)) {
+      console.log('need to reload ng template', path);
+      reloadAngularDirectiveTemplate(path);
+      return true;
     }
   };
 
-  if (typeof LiveReload !== 'undefined') {
-    if (LiveReload.reloader.plugins.indexOf(ngTemplateReloadPlugin) === -1) {
-      LiveReload.reloader.plugins.push(ngTemplateReloadPlugin);
-      console.log('Registered ng hot template live reload plugin');
+  setTimeout(function () {
+    if (typeof LiveReload !== 'undefined') {
+      if (!LiveReload.hasPlugin(ngTemplateReloadPlugin.identifier)) {
+        LiveReload.addPlugin(ngTemplateReloadPlugin);
+        console.log('Registered ng hot template live reload plugin');
+      }
     }
-  }
+  }, 50);
 
 }());
